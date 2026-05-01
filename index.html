@@ -19,7 +19,7 @@
                         darkBg: '#0f172a',
                         darkSurface: '#1e293b',
                         brightPink: '#ec4899',
-                        brightCyan: '#06b6d4',
+                        brightOrange: '#f97316',
                         brightYellow: '#eab308',
                         brightPurple: '#8b5cf6'
                     }
@@ -54,7 +54,7 @@
             position: relative;
             transition: all 0.2s ease-in-out;
         }
-        .custom-checkbox:checked { background-color: #06b6d4; border-color: #06b6d4; }
+        .custom-checkbox:checked { background-color: #f97316; border-color: #f97316; }
         .custom-checkbox:checked::after {
             content: ''; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
             border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
@@ -90,7 +90,7 @@
             top: 4px;
             bottom: 4px;
             width: calc(50% - 4px);
-            background: #06b6d4;
+            background: #f97316;
             border-radius: 8px;
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -105,14 +105,7 @@
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-darkBg dark:text-gray-100 transition-colors duration-300 antialiased h-screen overflow-hidden">
 
-    <div id="loading-overlay" class="fixed inset-0 z-[60] flex items-center justify-center bg-gray-50 dark:bg-darkBg">
-        <div class="text-center">
-            <i data-lucide="loader-2" class="w-12 h-12 animate-spin text-brightCyan mx-auto mb-4"></i>
-            <h2 class="text-xl font-bold">Initializing Flo Tasks...</h2>
-        </div>
-    </div>
-
-    <div id="app" class="flex h-full w-full hidden">
+    <div id="app" class="flex h-full w-full">
         
         <!-- Sidebar -->
         <div id="mobile-overlay" onclick="app.toggleMenu(false)" class="fixed inset-0 bg-black/60 z-40 hidden md:hidden"></div>
@@ -121,7 +114,7 @@
             
             <div class="flex items-center justify-between p-6">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brightCyan to-blue-600 flex items-center justify-center text-white shadow-lg">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brightOrange to-red-600 flex items-center justify-center text-white shadow-lg">
                         <i data-lucide="layers" class="w-6 h-6"></i>
                     </div>
                     <h1 class="text-2xl font-extrabold tracking-tight">Flo Tasks</h1>
@@ -163,7 +156,7 @@
                     <h2 id="view-title" class="text-xl font-extrabold md:text-2xl">Dashboard</h2>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button onclick="app.openTaskModal()" class="flex items-center gap-2 px-4 py-2 bg-brightCyan text-white rounded-lg font-bold text-sm shadow-lg shadow-cyan-500/20">
+                    <button onclick="app.openTaskModal()" class="flex items-center gap-2 px-4 py-2 bg-brightOrange text-white rounded-lg font-bold text-sm shadow-lg shadow-orange-500/20">
                         <i data-lucide="plus" class="w-4 h-4"></i> <span class="hidden sm:inline">Add Task</span>
                     </button>
                 </div>
@@ -183,8 +176,8 @@
                             <p id="stat-completed" class="text-3xl font-black text-green-500">0</p>
                         </div>
                         <div class="glass-panel p-4 rounded-2xl">
-                            <p class="text-xs font-bold text-brightCyan uppercase">Active</p>
-                            <p id="stat-pending" class="text-3xl font-black text-brightCyan">0</p>
+                            <p class="text-xs font-bold text-brightOrange uppercase">Active</p>
+                            <p id="stat-pending" class="text-3xl font-black text-brightOrange">0</p>
                         </div>
                         <div class="glass-panel p-4 rounded-2xl">
                             <p class="text-xs font-bold text-red-500 uppercase">Missed</p>
@@ -192,7 +185,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-gradient-to-br from-brightPurple to-blue-600 p-6 rounded-3xl text-white shadow-xl relative overflow-hidden">
+                    <div class="bg-gradient-to-br from-brightPurple to-orange-600 p-6 rounded-3xl text-white shadow-xl relative overflow-hidden">
                         <div class="absolute -right-4 -top-4 opacity-10">
                             <i data-lucide="target" class="w-32 h-32"></i>
                         </div>
@@ -201,13 +194,13 @@
                     </div>
 
                     <div class="space-y-4">
-                        <h3 class="font-black text-xl flex items-center gap-2"><i data-lucide="bar-chart-3" class="text-brightCyan"></i> Team Performance</h3>
+                        <h3 class="font-black text-xl flex items-center gap-2"><i data-lucide="bar-chart-3" class="text-brightOrange"></i> Team Performance</h3>
                         <div id="team-stats-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="glass-panel p-6 rounded-2xl">
-                            <h3 class="font-black text-lg mb-4 flex items-center gap-2"><i data-lucide="clock" class="text-brightCyan"></i> Upcoming</h3>
+                            <h3 class="font-black text-lg mb-4 flex items-center gap-2"><i data-lucide="clock" class="text-brightOrange"></i> Upcoming</h3>
                             <div id="upcoming-list" class="space-y-3"></div>
                         </div>
                     </div>
@@ -242,8 +235,8 @@
                         <div class="space-y-4">
                             <h3 class="text-2xl font-black">Team Members</h3>
                             <div class="flex gap-2">
-                                <input type="text" id="new-user-name" placeholder="Name (e.g. Sarah)" class="flex-1 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-3 rounded-xl outline-none focus:ring-2 focus:ring-brightCyan">
-                                <button onclick="app.addUser()" class="bg-brightCyan px-4 py-3 rounded-xl text-white font-bold hover:scale-105 transition-transform"><i data-lucide="user-plus"></i></button>
+                                <input type="text" id="new-user-name" placeholder="Name (e.g. Sarah)" class="flex-1 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-3 rounded-xl outline-none focus:ring-2 focus:ring-brightOrange">
+                                <button onclick="app.addUser()" class="bg-brightOrange px-4 py-3 rounded-xl text-white font-bold hover:scale-105 transition-transform"><i data-lucide="user-plus"></i></button>
                             </div>
                             <div id="team-list" class="space-y-3"></div>
                         </div>
@@ -269,7 +262,7 @@
                 <button onclick="app.closeTaskModal()" class="p-2"><i data-lucide="x"></i></button>
             </div>
             <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
-                <input type="text" id="task-title" placeholder="Task description..." class="w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-2xl font-bold focus:ring-2 focus:ring-brightCyan outline-none">
+                <input type="text" id="task-title" placeholder="Task description..." class="w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-2xl font-bold focus:ring-2 focus:ring-brightOrange outline-none">
                 
                 <div class="grid grid-cols-2 gap-4">
                     <div class="space-y-1">
@@ -322,7 +315,7 @@
                     </div>
                 </div>
 
-                <button onclick="app.saveTask()" class="w-full py-4 bg-brightCyan text-white font-black rounded-2xl shadow-xl shadow-cyan-500/30 hover:scale-[1.02] active:scale-95 transition-all">
+                <button onclick="app.saveTask()" class="w-full py-4 bg-brightOrange text-white font-black rounded-2xl shadow-xl shadow-orange-500/30 hover:scale-[1.02] active:scale-95 transition-all">
                     SAVE TASK
                 </button>
             </div>
@@ -356,22 +349,32 @@
 
             init: async function() {
                 this.setupTheme();
-                try {
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
+                
+                // Auth setup - handle retries for environment stability
+                const initAuth = async (retries = 5) => {
+                    for (let i = 0; i < retries; i++) {
+                        try {
+                            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                                await signInWithCustomToken(auth, __initial_auth_token);
+                            } else {
+                                await signInAnonymously(auth);
+                            }
+                            return;
+                        } catch (e) {
+                            if (i === retries - 1) this.showToast("Connection failed", "error");
+                            await new Promise(r => setTimeout(r, Math.pow(2, i) * 1000));
+                        }
                     }
-                } catch(e) { console.error(e); }
+                };
 
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         this.user = user;
                         this.syncData();
-                        document.getElementById('loading-overlay').classList.add('hidden');
-                        document.getElementById('app').classList.remove('hidden');
                     }
                 });
+
+                await initAuth();
             },
 
             syncData: function() {
@@ -386,19 +389,19 @@
                         if (!this.activeProfileId || !this.profiles.find(p => p.id === this.activeProfileId)) {
                              this.switchProfile(this.profiles[0].id);
                         }
-                    } else {
+                    } else if (this.currentTab !== 'profile') {
                         this.activeProfileId = null;
                         this.switchTab('profile');
                     }
                     this.renderProfiles();
                     this.renderAll();
-                });
+                }, (err) => console.error(err));
 
                 onSnapshot(tasksRef, (snap) => {
                     this.tasks = [];
                     snap.forEach(doc => this.tasks.push({ id: doc.id, ...doc.data() }));
                     this.renderAll();
-                });
+                }, (err) => console.error(err));
             },
 
             addUser: async function() {
@@ -406,7 +409,7 @@
                 const name = input.value.trim();
                 if (!name) return;
                 const id = crypto.randomUUID();
-                const colors = ['bg-brightCyan', 'bg-brightPink', 'bg-brightPurple', 'bg-brightYellow', 'bg-green-500'];
+                const colors = ['bg-brightOrange', 'bg-brightPink', 'bg-brightPurple', 'bg-brightYellow', 'bg-green-500'];
                 const color = colors[this.profiles.length % colors.length];
                 
                 await setDoc(doc(db, 'artifacts', appId, 'users', this.user.uid, 'profiles', id), {
@@ -460,9 +463,9 @@
                 document.querySelectorAll('.day-btn').forEach(btn => {
                     const bDay = parseInt(btn.dataset.day);
                     if (this.selectedDays.includes(bDay)) {
-                        btn.classList.add('bg-brightCyan', 'text-white', 'border-brightCyan');
+                        btn.classList.add('bg-brightOrange', 'text-white', 'border-brightOrange');
                     } else {
-                        btn.classList.remove('bg-brightCyan', 'text-white', 'border-brightCyan');
+                        btn.classList.remove('bg-brightOrange', 'text-white', 'border-brightOrange');
                     }
                 });
             },
@@ -484,12 +487,12 @@
 
                 if (recurrence === 'daily') {
                     for (let i = 0; i < 7; i++) {
-                        newTasks.push(this.createTaskObj(baseId + i, title, curr.toISOString().split('T')[0], assigneeId, isBig, category));
+                        newTasks.push(this.createTaskObj(crypto.randomUUID(), title, curr.toISOString().split('T')[0], assigneeId, isBig, category));
                         curr.setDate(curr.getDate() + 1);
                     }
                 } else if (recurrence === 'weekly') {
                     for (let i = 0; i < 4; i++) {
-                        newTasks.push(this.createTaskObj(baseId + i, title, curr.toISOString().split('T')[0], assigneeId, isBig, category));
+                        newTasks.push(this.createTaskObj(crypto.randomUUID(), title, curr.toISOString().split('T')[0], assigneeId, isBig, category));
                         curr.setDate(curr.getDate() + 7);
                     }
                 } else if (recurrence === 'weekly_custom') {
@@ -505,12 +508,12 @@
                     }
                 } else if (recurrence === 'monthly') {
                     for (let i = 0; i < 6; i++) {
-                        newTasks.push(this.createTaskObj(baseId + i, title, curr.toISOString().split('T')[0], assigneeId, isBig, category));
+                        newTasks.push(this.createTaskObj(crypto.randomUUID(), title, curr.toISOString().split('T')[0], assigneeId, isBig, category));
                         curr.setMonth(curr.getMonth() + 1);
                     }
                 } else if (recurrence === 'yearly') {
                     for (let i = 0; i < 2; i++) {
-                        newTasks.push(this.createTaskObj(baseId + i, title, curr.toISOString().split('T')[0], assigneeId, isBig, category));
+                        newTasks.push(this.createTaskObj(crypto.randomUUID(), title, curr.toISOString().split('T')[0], assigneeId, isBig, category));
                         curr.setFullYear(curr.getFullYear() + 1);
                     }
                 } else {
@@ -576,13 +579,13 @@
                                 <p class="font-bold truncate text-sm">${p.name}</p>
                                 <div class="flex gap-3 text-[10px] font-black uppercase">
                                     <span class="text-green-500">${completed} Done</span>
-                                    <span class="text-brightCyan">${active} Active</span>
+                                    <span class="text-brightOrange">${active} Active</span>
                                     <span class="text-red-500">${missed} Missed</span>
                                 </div>
                             </div>
                         </div>
                     `;
-                }).join('') : '<p class="text-xs opacity-50 col-span-full py-4 text-center">Add team members in the Team tab to see performance stats.</p>';
+                }).join('') : '<p class="text-xs opacity-50 col-span-full py-4 text-center">Add team members in the Team tab.</p>';
             },
 
             renderDashboard: function(tasks, today) {
@@ -592,7 +595,7 @@
                     bigCont.innerHTML = `
                         <h4 class="text-xl md:text-2xl font-black ${big.status === 'completed' ? 'line-through opacity-60' : ''}">${this.esc(big.title)}</h4>
                         <div class="flex gap-4 mt-2">
-                            <button onclick="app.toggleTaskStatus('${big.id}','${big.status}')" class="bg-white text-brightPurple px-4 py-1 rounded-full text-xs font-black uppercase">
+                            <button onclick="app.toggleTaskStatus('${big.id}','${big.status}')" class="bg-white text-brightOrange px-4 py-1 rounded-full text-xs font-black uppercase">
                                 ${big.status === 'completed' ? 'Undo' : 'Complete'}
                             </button>
                         </div>
@@ -660,7 +663,7 @@
                 const list = document.getElementById('team-list');
                 list.innerHTML = this.profiles.map(p => `
                     <div class="flex items-center gap-2 group">
-                        <div onclick="app.switchProfile('${p.id}')" class="flex-1 flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${this.activeProfileId === p.id ? 'bg-brightCyan text-white shadow-lg' : 'bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700'}">
+                        <div onclick="app.switchProfile('${p.id}')" class="flex-1 flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${this.activeProfileId === p.id ? 'bg-brightOrange text-white shadow-lg' : 'bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700'}">
                             <div class="flex items-center gap-3">
                                 <div class="w-8 h-8 rounded-full ${p.color} flex items-center justify-center font-bold text-xs shrink-0 text-white">${p.name[0]}</div>
                                 <p class="font-bold truncate">${this.esc(p.name)}</p>
@@ -668,7 +671,7 @@
                             ${this.activeProfileId === p.id ? '<i data-lucide="check-circle-2" class="w-4 h-4 shrink-0"></i>' : ''}
                         </div>
                         <div class="flex items-center gap-1">
-                            <button onclick="app.editUser('${p.id}')" class="p-2 opacity-0 group-hover:opacity-100 text-gray-400 hover:text-brightCyan transition-all"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                            <button onclick="app.editUser('${p.id}')" class="p-2 opacity-0 group-hover:opacity-100 text-gray-400 hover:text-brightOrange transition-all"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
                             <button onclick="app.deleteUser('${p.id}')" class="p-2 opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-all"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                         </div>
                     </div>
@@ -704,7 +707,7 @@
                 
                 document.querySelectorAll('.nav-btn').forEach(b => b.className = "nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800");
                 const active = document.getElementById(`nav-${tab}`);
-                active.className = "nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all bg-brightCyan/10 text-brightCyan";
+                active.className = "nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all bg-brightOrange/10 text-brightOrange";
                 
                 this.toggleMenu(false);
                 this.renderAll();
@@ -729,7 +732,7 @@
                 const modal = document.getElementById('task-modal');
                 const content = document.getElementById('task-modal-content');
                 document.getElementById('task-date').value = this.currentDateStr;
-                this.setCategory('personal'); // Default to personal
+                this.setCategory('personal'); 
                 modal.classList.remove('hidden');
                 setTimeout(() => content.classList.remove('scale-95', 'opacity-0'), 10);
             },
@@ -757,7 +760,7 @@
             showToast: function(msg, type='success') {
                 const container = document.getElementById('toast-container');
                 const toast = document.createElement('div');
-                toast.className = `p-4 rounded-xl shadow-xl text-xs font-black uppercase flex items-center gap-3 fade-in ${type === 'success' ? 'bg-white dark:bg-darkSurface text-brightCyan' : 'bg-red-500 text-white'}`;
+                toast.className = `p-4 rounded-xl shadow-xl text-xs font-black uppercase flex items-center gap-3 fade-in ${type === 'success' ? 'bg-white dark:bg-darkSurface text-brightOrange' : 'bg-red-500 text-white'}`;
                 toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check' : 'alert-triangle'}" class="w-4 h-4"></i> ${msg}`;
                 container.appendChild(toast);
                 lucide.createIcons();
